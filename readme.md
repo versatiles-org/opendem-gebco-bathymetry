@@ -1,4 +1,8 @@
-# Bathymetry
+# OpenDEM GEBCO Bathymetry
+
+![OpenDEM GEBCO Bathymetry Layer on a map](./screenshot.png)
+
+> *This is very much experimental at this stage. Things might change without notice. Do not use in production*
 
 Convert [Bathymetry Shapefiles from OpenDEM](https://www.opendem.info/download_bathymetry.html) to Vectortiles in a [Versatiles Container](https://versatiles.org/).
 
