@@ -71,13 +71,13 @@ if [ ! -f "./tmp/gebco_2021_polys.zip" ]; then
 	curl -o "./tmp/gebco_2021_polys.zip" "https://www.openmaps.online/bathymetry/gebco_2021_polys.zip";
 fi;
 
-if [ ! -d "gebco_2021_polys" ]; then
+if [ ! -f "./tmp/gebco_2021_polys.shp" ]; then
 	echo "Extracting";
 	unzip -d "./tmp/" "./tmp/gebco_2021_polys.zip";
 fi;
 
 echo "Converting Shapefile to GeoJSON";
-ogr2ogr -f GeoJSON -sql "SELECT CAST(amax AS INTEGER) as mindepth FROM gebco_2021_polys WHERE amax < 0" "./tmp/bathymetry.geojson" "./tmp/gebco_2021_polys/gebco_2021_polys.shp";
+ogr2ogr -f GeoJSON -sql "SELECT CAST(amax AS INTEGER) as mindepth FROM gebco_2021_polys WHERE amax < 0" "./tmp/bathymetry.geojson" "./tmp/gebco_2021_polys.shp";
 
 echo "Creating reduced versions for low and medium zoom";
 # mapshaper struggles to JSON.stringify() the data to produce GeoJSON
