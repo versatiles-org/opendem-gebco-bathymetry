@@ -12,7 +12,7 @@ if [ ! -x "$(command -v ogr2ogr)" ]; then
 	exit 1;
 fi;
 
-if [ ! -x "$(command -v tilejoin)" ]; then
+if [ ! -x "$(command -v tile-join)" ]; then
 	echo "Please install tile-join:";
 	echo "	brew install tippecanoe";
 	exit 1;
