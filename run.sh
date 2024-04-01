@@ -83,7 +83,7 @@ echo "Creating reduced versions for low and medium zoom";
 # mapshaper struggles to JSON.stringify() the data to produce GeoJSON
 # because node tries to write the string to the heap and runs out of memory
 # so we write to a shapefile instead
-$JSRUNTME `which mapshaper` "./tmp/bathymetry.geojson" -each 'mindepth = mindepth > -100 ? 0 : mindepth > -500 ? -100 : mindepth > -1000 ? -500 : mindepth > -2000 ? -1000 : mindepth > -4000 ? -2000 : mindepth > -6000 ? 4000 : mindepth > -8000 ? -6000 : -8000' -dissolve 'fields=mindepth' -filter 'mindepth < 0' -simplify 30% -o 'format=shapefile' 'tmp/bathymetry-low.shp';
+$JSRUNTME `which mapshaper` "./tmp/bathymetry.geojson" -each 'mindepth = mindepth > -100 ? 0 : mindepth > -500 ? -100 : mindepth > -1000 ? -500 : mindepth > -2000 ? -1000 : mindepth > -4000 ? -2000 : mindepth > -6000 ? -4000 : mindepth > -8000 ? -6000 : -8000' -dissolve 'fields=mindepth' -filter 'mindepth < 0' -simplify 30% -o 'format=shapefile' 'tmp/bathymetry-low.shp';
 $JSRUNTME `which mapshaper` "./tmp/bathymetry.geojson" -each 'mindepth = mindepth > -50 ? 0 : mindepth > -100 ? -50 : mindepth > -200 ? -100 : mindepth > -500 ? -100 : mindepth > -1000 ? -500 : mindepth > -1500 ? -1000 : mindepth > -2000 ? -1500 : mindepth > -3000 ? -2000 : mindepth > -4000 ? -3000 : mindepth > -5000 ? -4000 : mindepth > -6000 ? -5000 : mindepth > -7000 ? -6000 : mindepth > -8000 ? -7000 : mindepth > -9000 ? -8000 : -9000' -dissolve 'fields=mindepth' -filter 'mindepth < 0' -simplify 30% -o 'format=shapefile' 'tmp/bathymetry-medium.shp';
 
 echo "Converting to GeoJSON";
