@@ -91,12 +91,12 @@ ogr2ogr -f GeoJSON "./tmp/bathymetry-low.geojson" "./tmp/bathymetry-low.shp";
 ogr2ogr -f GeoJSON "./tmp/bathymetry-medium.geojson" "./tmp/bathymetry-medium.shp";
 
 echo "Generating Vector Tiles";
-$JSRUNTME `which tippecanoe` -Z 0 -z 5 -l "bathymetry" -M 100000 --include mindepth -o "./tmp/bathymetry-low.mbtiles" "./tmp/bathymetry-low.geojson";
-$JSRUNTME `which tippecanoe` -Z 6 -z 9 -l "bathymetry" -M 100000 --include mindepth -o "./tmp/bathymetry-medium.mbtiles" "./tmp/bathymetry-medium.geojson";
-$JSRUNTME `which tippecanoe` -Z 10 -z 10 -l "bathymetry" -M 100000 --include mindepth -o "./tmp/bathymetry-high.mbtiles" "./tmp/bathymetry.geojson";
+tippecanoe -Z 0 -z 5 -l "bathymetry" -M 100000 --include mindepth -o "./tmp/bathymetry-low.mbtiles" "./tmp/bathymetry-low.geojson";
+tippecanoe -Z 6 -z 9 -l "bathymetry" -M 100000 --include mindepth -o "./tmp/bathymetry-medium.mbtiles" "./tmp/bathymetry-medium.geojson";
+tippecanoe -Z 10 -z 10 -l "bathymetry" -M 100000 --include mindepth -o "./tmp/bathymetry-high.mbtiles" "./tmp/bathymetry.geojson";
 
 echo "Joining Vector Layers";
-$JSRUNTME `which tile-join` -o "./tmp/bathymetry.mbtiles" "./tmp/bathymetry-low.mbtiles" "./tmp/bathymetry-medium.mbtiles" "./tmp/bathymetry-high.mbtiles";
+tile-join -o "./tmp/bathymetry.mbtiles" "./tmp/bathymetry-low.mbtiles" "./tmp/bathymetry-medium.mbtiles" "./tmp/bathymetry-high.mbtiles";
 
 echo "Add attribution to MBTiles Container";
 # although the gebco dataset is in the public domain, OpenDEM likes to get attribution
