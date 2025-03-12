@@ -43,7 +43,7 @@ Example:
 		"visibility": "visible"
 	},
 	"paint": {
-		"fill-opacity": 1.
+		"fill-opacity": 1,
 		"fill-antialias": false,
 		"fill-color": ["case",
 			["==", ["get", "mindepth"], -25], "#0084bd",
