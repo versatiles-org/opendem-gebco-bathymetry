@@ -44,6 +44,8 @@ fi;
 
 if [ ! -x "$(command -v versatiles)" ]; then
 	echo "Please install versatiles:";
+	echo "	brew tap versatiles-org/versatiles";
+	echo "	brew trust versatiles-org/versatiles";
 	echo "	brew install versatiles";
 	exit 1;
 fi;
